@@ -18,7 +18,9 @@ fastify.register(fastifyStatic, {
   prefix: '/',
 });
 
-
+fastify.setNotFoundHandler((request, reply) => {
+  reply.status(404).sendFile('/html/404.html', path.join(__dirname, 'public'));
+});
 
 
 
