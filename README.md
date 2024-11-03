@@ -1,3 +1,4 @@
 # Portfolio
 
-## Working on a portfolio website for me.
+## Working on a portfolio/personal website for me.
+# Placeholder name
