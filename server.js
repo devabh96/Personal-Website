@@ -7,7 +7,8 @@ const path = require('path');
 const fs = require('fs');
 const routesPath = path.join(__dirname, 'routes');
 const mongoose = require('mongoose');
-
+const { Client, Events, GatewayIntentBits } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 fs.readdirSync(routesPath).forEach((file) => {
   const route = require(path.join(routesPath, file));
@@ -25,6 +26,14 @@ fastify.setNotFoundHandler((request, reply) => {
 
 
 
+
+
+
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+client.login(process.env.BOT_TOKEN);
 mongoose.connect(process.env.MONGO_URI).then(()=>{
   console.log("Successfully connected to the database")
 }).catch((err) =>{
