@@ -25,6 +25,6 @@ fastify.setNotFoundHandler((request, reply) => {
 
 
 
-fastify.listen({ port: process.env.PORT }, (err, address) => {
+fastify.listen({ port: process.env.PORT, host: process.env.HOST }, (err, address) => {
   if (err) throw err
 })
