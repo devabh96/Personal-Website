@@ -6,6 +6,7 @@ const fastifyStatic = require('@fastify/static');
 const path = require('path');
 const fs = require('fs');
 const routesPath = path.join(__dirname, 'routes');
+const mongoose = require('mongoose');
 
 
 fs.readdirSync(routesPath).forEach((file) => {
@@ -24,7 +25,11 @@ fastify.setNotFoundHandler((request, reply) => {
 
 
 
-
+mongoose.connect(process.env.MONGO_URI).then(()=>{
+  console.log("Successfully connected to the database")
+}).catch((err) =>{
+  console.error("Error while connecting",err)
+})
 fastify.listen({ port: process.env.PORT, host: process.env.HOST }, (err, address) => {
   if (err) throw err
 })
