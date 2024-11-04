@@ -15,9 +15,13 @@ const client = new Client({
         GatewayIntentBits.MessageContent
     ]
 });
-
+const apiPath = path.join(__dirname, "api")
 client.login(process.env.BOT_TOKEN);
-client.channels.cache.get(process.env.CHANNEL);
+
+fs.readdirSync(apiPath).forEach(file =>{
+  const ep  = require(path.join(apiPath, file));
+  fastify.register(ep,{ prefix: '/api'})
+})
 fs.readdirSync(routesPath).forEach(file => {
     const route = require(path.join(routesPath, file));
     fastify.register(route);
