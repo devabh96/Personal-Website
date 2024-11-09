@@ -1,5 +1,5 @@
-module.exports = function(fastify){
-  fastify.get('/hi', (request, reply) =>{
-    reply.send("Hii")
-  })
-}
+module.exports = function (fastify) {
+  fastify.get("/hi", (request, reply) => {
+    reply.send("Hii");
+  });
+};
