@@ -7,7 +7,7 @@ const path = require("path");
 const fs = require("fs");
 const routesPath = path.join(__dirname, "routes");
 const mongoose = require("mongoose");
-const { Client, Events, GatewayIntentBits } = require("discord.js");
+const { Client, GatewayIntentBits } = require("discord.js");
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -58,7 +58,7 @@ async function fastifyConnect() {
     (err, address) => {
       if (err)
         client.channels.cache.get(process.env.CHANNEL).send({
-          content: err,
+          content: "err",
         });
       else
         client.channels.cache.get(process.env.CHANNEL).send({
